@@ -1,0 +1,29 @@
+- name: Test playbook
+  hosts: bb
+  ignore_unreachable: true
+  gather_facts: false
+  vars:
+    ansible_command_timeout: 300
+
+  tasks:
+    # - name: Get flash data
+    #   community.network.sros_command:
+    #     commands: show card "A" detail
+    #   register: flash_data
+
+    # - name: Get flash data
+    #   ansible.netcommon.netconf_get:
+    #     filter: >
+    #       <state xmlns="urn:nokia.com:sros:ns:yang:sr:state">
+    #         <cpm>
+    #           <cpm-slot>A</cpm-slot>
+    #           <flash/>
+    #         </cpm>
+    #       </state>
+    #     display: json
+    #   register: flash_data
+    #   vars:
+    #     ansible_connection: netconf
+
+    - name: Get flash data
+      ansible.builtin.script: sros_get_flash_data.py
