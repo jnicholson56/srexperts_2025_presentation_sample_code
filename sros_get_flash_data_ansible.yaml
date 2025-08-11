@@ -1,5 +1,5 @@
 - name: Test playbook
-  hosts: localhost
+  hosts: rtr1
   ignore_unreachable: true
   gather_facts: false
   vars:
