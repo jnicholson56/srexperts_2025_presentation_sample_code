@@ -1,4 +1,4 @@
-#!/opt/gums/bin/python3
+#!/usr/bin/python3
 import xml.etree.ElementTree as ET
 
 from ncclient import manager
