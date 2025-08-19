@@ -7,14 +7,14 @@
 
   tasks:
     - name: Get flash data
-      ansible.netcommon.cli_command:
-        command: show card "A" detail
-      register: flash_data_cli_command
+      community.network.sros_command:
+        commands: show card "A" detail
+      register: flash_data_sros_command
 
     # - name: Get flash data
-    #   community.network.sros_command:
-    #     commands: show card "A" detail
-    #   register: flash_data_sros_command
+    #   ansible.netcommon.cli_command:
+    #     command: show card "A" detail
+    #   register: flash_data_cli_command
 
     # - name: Get flash data
     #   ansible.netcommon.netconf_get:
@@ -33,3 +33,4 @@
     # - name: Get flash data
     #   ansible.builtin.script: sros_get_flash_data_pysros.py
     #   delegate_to: localhost
+    #   register: flash_data_script
