@@ -1,10 +1,11 @@
-#!/opt/gums/bin/python3
+#!/usr/bin/python3
 from pysros.management import connect
+from pysros.pprint import printTree
 
 # Connect to router
 connection = connect(
     host="rtr1",
-    username="username",
+    username="username"
     password="password",
     hostkey_verify=False,
 )
@@ -15,9 +16,12 @@ data = connection.running.get('/nokia-state:state/cpm[cpm-slot="A"]/flash')
 # Cleanup connection to router
 connection.disconnect()
 
+# Print the raw data structure using pysros pretty print
+printTree(data)
+
 # Format the retrieved data
-for flash_id, flash_info in data.items():
-    print(f"Flash {flash_id}:")
-    for key, value in flash_info.items():
-        val = value.data if hasattr(value, "data") else str(value)
-        print(f"  {key}: {val}")
+# for flash_id, flash_info in data.items():
+#     print(f"Flash {flash_id}:")
+#     for key, value in flash_info.items():
+#         val = value.data if hasattr(value, "data") else str(value)
+#         print(f"  {key}: {val}")
