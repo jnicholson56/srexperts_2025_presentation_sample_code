@@ -7,23 +7,29 @@
 
   tasks:
     - name: Get flash data
-      community.network.sros_command:
-        commands: show card "A" detail
-      register: flash_data_sros_command
+      ansible.netcommon.cli_command:
+        command: show card "A" detail
+      register: flash_data_cli_command
 
-    - name: Get flash data
-      ansible.netcommon.netconf_get:
-        filter: >
-          <state xmlns="urn:nokia.com:sros:ns:yang:sr:state">
-            <cpm>
-              <cpm-slot>A</cpm-slot>
-              <flash/>
-            </cpm>
-          </state>
-        display: json
-      register: flash_data_netconf
-      vars:
-        ansible_connection: netconf
+    # - name: Get flash data
+    #   community.network.sros_command:
+    #     commands: show card "A" detail
+    #   register: flash_data_sros_command
 
-    - name: Get flash data
-      ansible.builtin.script: sros_get_flash_data.py
+    # - name: Get flash data
+    #   ansible.netcommon.netconf_get:
+    #     filter: >
+    #       <state xmlns="urn:nokia.com:sros:ns:yang:sr:state">
+    #         <cpm>
+    #           <cpm-slot>A</cpm-slot>
+    #           <flash/>
+    #         </cpm>
+    #       </state>
+    #     display: json
+    #   register: flash_data_netconf_get
+    #   vars:
+    #     ansible_connection: netconf
+
+    # - name: Get flash data
+    #   ansible.builtin.script: sros_get_flash_data_pysros.py
+    #   delegate_to: localhost
